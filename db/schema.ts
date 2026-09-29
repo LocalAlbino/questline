@@ -1,6 +1,5 @@
-import { varchar, boolean, integer, pgTable, text, decimal } from "drizzle-orm/pg-core";
+import { boolean, decimal, index, integer, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
-import { index, timestamp } from "drizzle-orm/cockroach-core";
 
 export { user, session, account, verification } from "./auth-schema";
 
@@ -35,9 +34,17 @@ export const cardsTable = pgTable(
     gameId: integer("game_id").notNull(),
     dueDate: timestamp("due_date"),
     isCompleted: boolean().notNull().default(false),
-    groupId: integer("group_ud")
+    groupId: integer("group_id")
       .references(() => groupsTable.id, { onDelete: "cascade", onUpdate: "cascade" })
       .notNull(),
   },
   (table) => [index("cards_groupId_idx").on(table.groupId)],
 );
+
+// Counters for limiting actions like sending emails. See lib/rate-limit.ts.
+export const rateLimitsTable = pgTable("rate_limits", {
+  key: text().primaryKey(),
+  count: integer().notNull(),
+  windowStart: timestamp("window_start", { withTimezone: true }).notNull(),
+  lastRequestAt: timestamp("last_request_at", { withTimezone: true }).notNull(),
+});

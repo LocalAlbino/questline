@@ -1,8 +1,8 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "cbafcdbe-b86a-48a2-a0a3-63383d7ce266",
-  "prevIds": ["00000000-0000-0000-0000-000000000000"],
+  "id": "257d03de-1e49-4092-bb21-c39daa635ffb",
+  "prevIds": ["cbafcdbe-b86a-48a2-a0a3-63383d7ce266"],
   "ddl": [
     {
       "isRlsEnabled": false,
@@ -345,7 +345,7 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "group_ud",
+      "name": "group_id",
       "entityType": "columns",
       "schema": "public",
       "table": "cards"
@@ -709,6 +709,48 @@
       "nameExplicit": true,
       "columns": [
         {
+          "value": "group_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "cards_groupId_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "cards"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "board_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "groups_boardId_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "groups"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
           "value": "user_id",
           "isExpression": false,
           "asc": true,
@@ -775,7 +817,7 @@
     },
     {
       "nameExplicit": false,
-      "columns": ["group_ud"],
+      "columns": ["group_id"],
       "schemaTo": "public",
       "tableTo": "groups",
       "columnsTo": ["id"],
@@ -887,5 +929,5 @@
       "entityType": "uniques"
     }
   ],
-  "renames": []
+  "renames": ["public.cards.group_ud->public.cards.group_id"]
 }
