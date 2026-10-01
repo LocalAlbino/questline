@@ -1,0 +1,25 @@
+import { db } from "@/db";
+import { boardsTable } from "@/db/schema";
+import { requireVerifiedSession } from "@/lib/session";
+import { BoardsList } from "@/ui/components/BoardsList";
+import { LinkButton } from "@/ui/components/LinkButton";
+import { eq } from "drizzle-orm";
+
+export default async function BoardsPage() {
+  const session = await requireVerifiedSession();
+
+  const boards = await db
+    .select({
+      id: boardsTable.id,
+      title: boardsTable.title,
+    })
+    .from(boardsTable)
+    .where(eq(boardsTable.ownerId, session?.user.id));
+
+  return (
+    <main className="m-8 flex flex-col gap-4 lg:m-96">
+      <BoardsList boards={boards} />
+      <LinkButton href="/boards/create">+ New board</LinkButton>
+    </main>
+  );
+}
