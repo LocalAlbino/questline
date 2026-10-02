@@ -49,4 +49,5 @@ export const rateLimitsTable = pgTable("rate_limits", {
   lastRequestAt: timestamp("last_request_at", { withTimezone: true }).notNull(),
 });
 
+export const MAX_BOARDS_PER_USER = 3;
 export type Board = typeof boardsTable.$inferSelect;

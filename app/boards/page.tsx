@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { boardsTable } from "@/db/schema";
+import { boardsTable, MAX_BOARDS_PER_USER } from "@/db/schema";
 import { requireVerifiedSession } from "@/lib/session";
 import { BoardsList } from "@/ui/components/BoardsList";
 import { LinkButton } from "@/ui/components/LinkButton";
@@ -18,8 +18,13 @@ export default async function BoardsPage() {
 
   return (
     <main className="m-8 flex flex-col gap-4 lg:m-96">
+      <h1 className="text-center text-lg">Your boards</h1>
       <BoardsList boards={boards} />
-      <LinkButton href="/boards/create">+ New board</LinkButton>
+      {boards.length < MAX_BOARDS_PER_USER ? (
+        <LinkButton href="/boards/create">+ New board</LinkButton>
+      ) : (
+        <span className="text-center text-zinc-600">You cannot create any more boards</span>
+      )}
     </main>
   );
 }
