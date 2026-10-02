@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { submitForgotPasswordForm } from "./actions";
 import type { ForgotPasswordFormState } from "./schema";
-import { AuthLayout } from "@/ui/components/AuthLayout";
+import { FormLayout } from "@/ui/components/FormLayout";
 import { FormInput } from "@/ui/components/FormField";
 import { FormMessage } from "@/ui/components/FormMessage";
 import { LinkPrompt } from "@/ui/components/LinkPrompt";
@@ -22,7 +22,7 @@ export function ForgotPasswordForm() {
   );
 
   return (
-    <AuthLayout title="Forgot password">
+    <FormLayout title="Forgot password">
       <form action={formAction} className="flex flex-col gap-4">
         <FormInput id="email" label="Email" type="email" placeholder="Email Address" errors={state?.errors?.email} />
         <div className="mt-8 flex flex-col gap-4">
@@ -37,6 +37,6 @@ export function ForgotPasswordForm() {
         </div>
         <LinkPrompt prompt="Remembered your password?" href="/login" linkText="Sign in here" />
       </form>
-    </AuthLayout>
+    </FormLayout>
   );
 }

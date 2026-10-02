@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { submitResetPasswordForm } from "./actions";
-import { AuthLayout } from "@/ui/components/AuthLayout";
+import { FormLayout } from "@/ui/components/FormLayout";
 import { FormInput } from "@/ui/components/FormField";
 import { FormMessage } from "@/ui/components/FormMessage";
 import { LinkPrompt } from "@/ui/components/LinkPrompt";
@@ -12,7 +12,7 @@ export function ResetPasswordForm({ token }: { token: string }) {
   const [state, formAction, isPending] = useActionState(submitResetPasswordForm.bind(null, token), null);
 
   return (
-    <AuthLayout title="Reset password">
+    <FormLayout title="Reset password">
       <form action={formAction} className="flex flex-col gap-4">
         <FormInput
           id="new-password"
@@ -34,6 +34,6 @@ export function ResetPasswordForm({ token }: { token: string }) {
         </div>
         <LinkPrompt prompt="Didn't get a reset password email?" href="/forgot-password" linkText="Forgot password" />
       </form>
-    </AuthLayout>
+    </FormLayout>
   );
 }

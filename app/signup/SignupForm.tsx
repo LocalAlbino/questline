@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { submitSignupForm } from "./actions";
-import { AuthLayout } from "@/ui/components/AuthLayout";
+import { FormLayout } from "@/ui/components/FormLayout";
 import { FormInput } from "@/ui/components/FormField";
 import { FormMessage } from "@/ui/components/FormMessage";
 import { LinkPrompt } from "@/ui/components/LinkPrompt";
@@ -12,7 +12,7 @@ export function SignupForm() {
   const [state, formAction, pending] = useActionState(submitSignupForm, null);
 
   return (
-    <AuthLayout title="Sign up to use Questline">
+    <FormLayout title="Sign up to use Questline">
       <form action={formAction} className="flex flex-col gap-4">
         <FormInput
           id="email"
@@ -42,6 +42,6 @@ export function SignupForm() {
         </div>
         <LinkPrompt prompt="Already have an account?" href="/login" linkText="Sign in here" />
       </form>
-    </AuthLayout>
+    </FormLayout>
   );
 }

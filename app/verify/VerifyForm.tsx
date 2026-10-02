@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthLayout } from "@/ui/components/AuthLayout";
+import { FormLayout } from "@/ui/components/FormLayout";
 import { SubmitButton } from "@/ui/components/SubmitButton";
 import { useActionState } from "react";
 import { signOutFromVerify, submitVerifyForm } from "./actions";
@@ -22,7 +22,7 @@ export function VerifyForm({ email, linkInvalid, retryAfter }: VerifyFormProps) 
   }, null);
 
   return (
-    <AuthLayout title="Verify your account">
+    <FormLayout title="Verify your account">
       <form action={formAction} className="flex flex-col gap-4">
         <span className="text-zinc-600">Your account isn&apos;t verified yet.</span>
         {linkInvalid && !state && (
@@ -42,6 +42,6 @@ export function VerifyForm({ email, linkInvalid, retryAfter }: VerifyFormProps) 
           Sign out
         </button>
       </form>
-    </AuthLayout>
+    </FormLayout>
   );
 }

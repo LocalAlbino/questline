@@ -2,7 +2,7 @@
 
 import { submitLoginForm } from "./actions";
 import { useActionState } from "react";
-import { AuthLayout } from "@/ui/components/AuthLayout";
+import { FormLayout } from "@/ui/components/FormLayout";
 import { FormInput } from "@/ui/components/FormField";
 import { FormMessage } from "@/ui/components/FormMessage";
 import { LinkPrompt } from "@/ui/components/LinkPrompt";
@@ -12,7 +12,7 @@ export function LoginForm({ passwordReset }: { passwordReset: boolean }) {
   const [state, formAction, pending] = useActionState(submitLoginForm, null);
 
   return (
-    <AuthLayout title="Sign in to Questline">
+    <FormLayout title="Sign in to Questline">
       <form action={formAction} className="flex flex-col gap-4">
         {passwordReset && !state && (
           <FormMessage variant="success">Password updated. Sign in with your new password.</FormMessage>
@@ -40,6 +40,6 @@ export function LoginForm({ passwordReset }: { passwordReset: boolean }) {
         <span className="text-center text-zinc-600">OR</span>
         <LinkPrompt prompt="Forgot your password?" href="/forgot-password" linkText="Send reset link" />
       </form>
-    </AuthLayout>
+    </FormLayout>
   );
 }
